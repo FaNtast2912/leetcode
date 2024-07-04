@@ -1,4 +1,5 @@
 import UIKit
+
 func isPalindrome(_ s: String) -> Bool {
     
     func removeNonAlphanumeric(from string: String) -> String {

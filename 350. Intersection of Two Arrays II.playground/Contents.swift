@@ -21,14 +21,27 @@ import UIKit
 //0 <= nums1[i], nums2[i] <= 1000
 
 func intersect(_ nums1: [Int], _ nums2: [Int]) -> [Int] {
+    let nums1Sorted = nums1.sorted()
+    let nums2Sorted = nums2.sorted()
+    var answer = [Int]()
     
-    var set = Set(nums1)
-    var set2 = Set(nums2)
-    set.intersection(set2)
+    var left = 0
+    var right = 0
     
-    return Array(set.intersection(set2))
+    while left < nums1.count, right < nums2.count {
+        if nums1Sorted[left] < nums2Sorted[right] {
+            left += 1
+        } else if nums1Sorted[left] > nums2Sorted[right] {
+            right += 1
+        } else if nums1Sorted[left] == nums2Sorted[right] {
+            answer.append(nums1Sorted[left])
+            left += 1
+            right += 1
+        }
+    }
+    return answer
 }
-var nums1 = [1,2,2,1], nums2 = [2,2,2]
+
+var nums1 = [1,2,2,1], nums2 = [2,2]
 
 intersect(nums1, nums2)
-
