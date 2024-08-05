@@ -22,6 +22,8 @@ import UIKit
 //Output: 50
 
 
+// MARK: - Solution doesnt work
+
 class Solution {
     func rangeSum(_ nums: [Int], _ n: Int, _ left: Int, _ right: Int) -> Int {
         var array = [Int]()
