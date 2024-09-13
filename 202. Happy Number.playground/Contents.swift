@@ -34,4 +34,10 @@ import UIKit
 //
 //1 <= n <= 231 - 1
 
-
+func isHappy(_ n: Int) -> Bool {
+       
+    
+    
+    
+    
+}

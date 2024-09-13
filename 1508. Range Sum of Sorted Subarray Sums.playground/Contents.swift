@@ -22,60 +22,51 @@ import UIKit
 //Output: 50
 
 
-// MARK: - Solution doesnt work
+// MARK: - рабочий метод, но не работает по времени, В решении число фибоначи и т д
 
-class Solution {
-    func rangeSum(_ nums: [Int], _ n: Int, _ left: Int, _ right: Int) -> Int {
-        var array = [Int]()
-        
-        for i in 0...n-1 {
-            var s = 0
-            for j in i...n-1 {
-                s += nums[j]
-                array.append(s)
-            }
-        }
-        
-        for i in 0..<array.count {
-          for j in 1..<array.count - i {
-            if array[j] < array[j-1] {
-              let tmp = array[j-1]
-              array[j-1] = array[j]
-              array[j] = tmp
-            }
-          }
-        }
-        
-        return array[left-1...right-1].reduce(0,+)
-    }
-}
 
 func rangeSum(_ nums: [Int], _ n: Int, _ left: Int, _ right: Int) -> Int {
-    var array = [Int]()
+    var startIndx = 0
+    var rightIndx = startIndx
+    var endIndx = n - 1
+    var arr:[Int] = []
+    var answer: Int = 0
     
-    for i in 0...n-1 {
-        var s = 0
-        for j in i...n-1 {
-            s += nums[j]
-            array.append(s)
-        }
+    if endIndx <= 0 {
+        print("tut")
+        return nums[0]
     }
     
-    for i in 0..<array.count {
-      for j in 1..<array.count - i {
-        if array[j] < array[j-1] {
-          let tmp = array[j-1]
-          array[j-1] = array[j]
-          array[j] = tmp
+     // Making Array
+    while startIndx <= endIndx {
+        while rightIndx <= endIndx {
+            let tempArr = nums[startIndx...rightIndx]
+            var tempSumm = 0
+            for numbers in tempArr {
+                tempSumm += numbers
+            }
+            arr.append(tempSumm)
+            rightIndx += 1
         }
-      }
+        startIndx += 1
+        rightIndx = startIndx
     }
     
-    return array[left-1...right-1].reduce(0,+)
+    for i in 0...arr.count - 1 {
+        for j in 1...arr.count - 1 {
+            if arr[j] < arr[j-1] {
+                let tmp = arr[j]
+                arr[j] = arr[j-1]
+                arr[j-1] = tmp
+            }
+        }
+    }
+    print(arr)
+    for i in left...right {
+        answer += arr[i-1]
+    }
+    
+    return answer
 }
 
-
-let nums = [1,2,3,4]
-rangeSum(nums, 4, 1, 5)
-
-
+rangeSum([1,3], 2, 1, 2)

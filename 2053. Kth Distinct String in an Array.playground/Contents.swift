@@ -6,7 +6,7 @@ import UIKit
 //
 //Note that the strings are considered in the order in which they appear in the array.
 //
-// 
+//
 //
 //Example 1:
 //
@@ -29,24 +29,24 @@ import UIKit
 //Output: ""
 //Explanation:
 //The only distinct string is "b". Since there are fewer than 3 distinct strings, we return an empty string "".
-
+//
 func kthDistinct(_ arr: [String], _ k: Int) -> String {
     var dict = [String:Int]()
     var arrayDicstric: [String] = []
-    
+
     for i in 0...arr.count-1 {
         dict[arr[i], default: 0] += 1
     }
-    
-    
+
+
     for (key,value) in dict {
         if value == 1 {
             arrayDicstric.append(key)
         }
     }
-    
+
     var count = k
-    
+
     for value in arr {
         for value2 in arrayDicstric {
             if value == value2 {

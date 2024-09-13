@@ -30,24 +30,59 @@ import UIKit
  нет
     левый = правый, правый +1
 */
+//
+//func moveZeroes(_ nums: inout [Int]) {
+//    var left = 0
+//    var right = left + 1
+//    
+//    while right < nums.count {
+//        if nums[left] == 0 {
+//            if nums[right] == 0 {
+//                right += 1
+//            } else {
+//                nums[left] = nums[right]
+//                nums[right] = 0
+//                left += 1
+//                right += 1
+//            }
+//        } else {
+//            left += 1
+//            right += 1
+//        }
+//    }
+//}
+
 
 func moveZeroes(_ nums: inout [Int]) {
     var left = 0
     var right = left + 1
     
-    while right < nums.count {
-        if nums[left] == 0 {
-            if nums[right] == 0 {
-                right += 1
-            } else {
-                nums[left] = nums[right]
-                nums[right] = 0
-                left += 1
+    while right <= nums.count - 1 {
+        if nums[left] == 0, nums[right] != 0 {
+            nums[left] = nums[right]
+            nums[right] = 0
+            left += 1
+            right += 1
+        } else if nums[left] == 0, nums[right] == 0 {
+            while nums[right] == 0, right < nums.count - 1 {
                 right += 1
             }
-        } else {
+            nums[left] = nums[right]
+            nums[right] = 0
+            left += 1
+            if right + 1 > nums.count - 1 {
+                break
+            }
+            right += 1
+        } else if nums[left] != 0, nums[right] != 0 {
+            left += 1
+            right += 1
+        } else if nums[left] != 0, nums[right] == 0 {
             left += 1
             right += 1
         }
     }
 }
+var arr = [1,0]
+
+moveZeroes(&arr)

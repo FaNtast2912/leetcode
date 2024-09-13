@@ -23,37 +23,28 @@ import UIKit
 
 
 func reverseVowels(_ s: String) -> String {
-    var array: = s.compactMap {$0}
+    let vowels: Set<Character> = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
+    var arr = Array(s)
+    
     var left = 0
-    var right = array.count-1
-    var set: [Character] = ["a","e","i","o","u"]
-    set.count
+    var right = arr.count - 1
     
     while left < right {
-        if !set.contains(array[left].lowercased()) {
-            while !set.contains(array[left].lowercased()) {
-                left += 1
-            }
-            if !set.contains(array[right].lowercased()) {
-                while !set.contains(array[right].lowercased()) {
-                    right -= 1
-                }
-            }
+        
+        if !vowels.contains(arr[left]) {
+            left += 1
+        } else if !vowels.contains(arr[right]) {
+            right -= 1
+        } else {
+            let tmp = arr[left]
+            arr[left] = arr[right]
+            arr[right] = tmp
+            left += 1
+            right -= 1
         }
-        if set.contains(array[left].lowercased()) && set.contains(array[right].lowercased()) {
-            var temp = array[left]
-            array[left] = array[right]
-            array[right] = temp
-        }
+        
     }
-    
-    
-    
-    
-    return ""
-
+    return String(arr)
 }
 
-let charactersArray = ["П", "р", "и", "в", "е", "т", " ", "м", "и", "р", "!"]
-let myString = String(charactersArray.joined(separator: ""))
-print(myString) // Вывод: Привет мир!
+reverseVowels("leetcode")

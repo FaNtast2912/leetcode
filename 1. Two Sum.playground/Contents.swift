@@ -7,7 +7,7 @@ var greeting = "Hello, playground"
 //
 //You can return the answer in any order.
 //
-// 
+//
 //
 //Example 1:
 //
@@ -22,7 +22,7 @@ var greeting = "Hello, playground"
 //
 //Input: nums = [3,3], target = 6
 //Output: [0,1]
-
+//
 let nums = [2,7,11,15]
 let target = 9
 
@@ -55,3 +55,21 @@ func twoSum2(_ nums: [Int], _ target: Int) -> [Int] {
 }
 
 twoSum2(nums, target)
+
+
+
+func twoSum3(_ nums: [Int], _ target: Int) -> [Int] {
+    var dictionary: [Int:Int] = [:]
+    
+    
+    for (index,value) in nums.enumerated() {
+        if let addet = dictionary[value] {
+            return [addet,index]
+        } else {
+            dictionary[target-value] = index
+        }
+    }
+    return []
+}
+
+twoSum3(nums, target)
