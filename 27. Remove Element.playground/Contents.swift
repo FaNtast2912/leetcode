@@ -39,6 +39,10 @@ import UIKit
 //Explanation: Your function should return k = 5, with the first five elements of nums containing 0, 0, 1, 3, and 4.
 //Note that the five elements can be returned in any order.
 //It does not matter what you leave beyond the returned k (hence they are underscores).
+
+
+// MARK: - Linear Search
+
 var nums = [2,3,3,2]
 
 
@@ -58,3 +62,20 @@ func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
 
 removeElement(&nums, 3)
 nums
+
+
+// MARK: - Buffer Pointer (Интересно, посмотри что такое)
+
+class Solution {
+    func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
+        guard !nums.isEmpty else { return 0 }
+        var i = 0
+        nums.withUnsafeBufferPointer { buffer in
+            for j in buffer.indices where buffer[j] != val {
+                nums[i] = buffer[j]
+                i += 1
+            }
+        }
+        return i
+    }
+}

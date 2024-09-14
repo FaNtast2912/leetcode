@@ -43,6 +43,7 @@ import UIKit
 //mySqrt(x)
 //
 
+// MARK: - Binary Search
 
 class Solution {
     func mySqrt(_ x: Int) -> Int {
@@ -83,3 +84,26 @@ func mySqrt(_ x: Int) -> Int {
 let x = 1
 
 mySqrt(x)
+
+
+// MARK: - Binary Search try two!
+
+func mySqrt2(_ x: Int) -> Int {
+    var left = 0
+    var right = x/2
+    
+    while left <= right {
+        let mid = left + (right-left)/2
+        
+        if mid*mid == x {
+            return mid
+        } else if x > mid*mid {
+            left = mid + 1
+        } else if x < mid*mid {
+            right = mid - 1
+        }
+    }
+    return x == 1 ? 1 : right
+}
+
+mySqrt2(x)
